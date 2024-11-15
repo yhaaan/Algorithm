@@ -4,6 +4,7 @@ using namespace std;
 
 const int M = 1234567891;
 int hashnum(string str,int len);
+long long selfpow(int n);
 
 int main() {
     int len;
@@ -16,9 +17,22 @@ int main() {
 
 
 int hashnum(string str,int len){
-    int sum=0;
-    for(int i = 0;i<len;i++)
-        sum += (str[i]-96)*pow(31,i);
+    long long sum=0;
+    for(int i = 0;i<len;i++){
+        sum += (str[i]-96)*selfpow(i);
+        //cout << "\nsumis " <<sum << " to "<<sum%M<<endl;
+        sum= sum%M;
+    }
     
     return sum%M;
+}
+
+long long selfpow(int n){
+    long long result = 1;
+    for(int i =0;i<n;i++){
+        result *= 31;
+        result=result%M;
+    }
+    //cout << result <<endl;
+    return result;
 }
