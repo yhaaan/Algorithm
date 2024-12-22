@@ -32,7 +32,6 @@ void findnum(int n,vector<int> &vec){
         cnt = countn(len,n,vec);
         if(cnt < n) mnum = len;
         if(cnt == n && maxlen < len) maxlen = len;
-        //if(cnt > n) maxlen = maxlen <len ? len : maxlen; 
     }
     if(maxlen != -1){
         cout << maxlen;
