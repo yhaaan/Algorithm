@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+
 void findnum(int n,vector<int> &vec);
 int countn(int len, int n, vector<int> &vec);
 
@@ -14,11 +15,11 @@ int main() {
         vec.push_back(num);
     }
 
+    //내림차순 정렬
     sort(vec.begin(), vec.end(), [](int a, int b) {
         return a > b;
     });
 
-    //for(auto v : vec) cout << v << endl;
     findnum(n,vec);
 }
 
@@ -26,25 +27,15 @@ void findnum(int n,vector<int> &vec){
     int maxlen = -1;
     int cnt = 0;
     int len = 0;
-    int mnum = -1; // 최소 길이 숫자
-    for(auto num : vec){
-        len = num;
-        cnt = countn(len,n,vec);
-        if(cnt < n) mnum = len;
-        if(cnt == n && maxlen < len) maxlen = len;
-    }
-    if(maxlen != -1){
-        cout << maxlen;
-        return;
-    }
+    long long mnum = vec[0]; // 2페이즈 진입시 사용하게 될 값
+    long long stn, edn;
+
     //2페이즈 진입
-    int stn, edn;
+    //이진탐색으로 최적값 찾음
     stn = 0;
     edn = mnum;
-    while(stn+1 < edn){
-        mnum = (stn + edn )/2;
+    do{
         cnt = countn(mnum,n,vec);
-        //cout << stn << "~"<<edn <<" "<<mnum <<  " cnt :" << cnt<<endl;
         if(cnt > n){
             stn = mnum;
             if(maxlen < mnum)
@@ -58,17 +49,18 @@ void findnum(int n,vector<int> &vec){
                 maxlen = mnum;
             stn = mnum;
         }
+        mnum = stn*0.5 + edn*0.5;
     }
+    while(stn+1 < edn);
     cout << maxlen;
 }
 
 int countn(int len, int n, vector<int> &vec){
-    //len길이를 n개 만들 수 있나?
+    //len길이로 몇개 만들 수 있는가
     int count = 0;
     for(auto num : vec){
         count += num/len;
     }
-    //cout << "test : " << count<<" " << len <<endl;
     return count;
 }
 
