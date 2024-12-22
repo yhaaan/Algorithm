@@ -27,11 +27,9 @@ void findnum(int n,vector<int> &vec){
     int maxlen = -1;
     int cnt = 0;
     int len = 0;
-    long long mnum = vec[0]; // 2페이즈 진입시 사용하게 될 값
+    long long mnum = vec[0]; // 젤 큰 값
     long long stn, edn;
 
-    //2페이즈 진입
-    //이진탐색으로 최적값 찾음
     stn = 0;
     edn = mnum;
     do{
@@ -50,8 +48,7 @@ void findnum(int n,vector<int> &vec){
             stn = mnum;
         }
         mnum = stn*0.5 + edn*0.5;
-    }
-    while(stn+1 < edn);
+    }while(stn+1 < edn);
     cout << maxlen;
 }
 
