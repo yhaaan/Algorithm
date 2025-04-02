@@ -29,8 +29,6 @@ int main() {
     int cnt = 0;
     
     while(true){
-        //cout << "a : " <<a << " b : " << b << " ans : " <<answer << " c : " <<cnt  <<"\n";
-
         if(answer <= 2){
             b++;
             if(g[arr[b]] == 0){
@@ -41,8 +39,7 @@ int main() {
             if(answer <=2 )
                 cnt = cnt < b-a+1? b-a+1: cnt; //cnt 갱신
                      
-            
-            //cout << "g["<<arr[b]<<"] = " << g[arr[b]] << endl;
+        
             
 
         }
@@ -58,9 +55,6 @@ int main() {
         //cnt = check(a,b);
         
     }
-
-    //cout << answer <<endl;
     cout << cnt;
-    //cout <<"\n a : " << a <<" b : " << b;
     
 }
