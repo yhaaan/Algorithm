@@ -8,7 +8,6 @@ int n,m;
 int dx[4] = {0,1,0,-1};
 int dy[4] = {1,0,-1,0};
 char map[600][600];
-bool visited[600][600];
 PII startpos;
 
 void BFS();
@@ -40,25 +39,23 @@ int main(void){
 void BFS(){
     queue<PII> q;
     q.push(startpos);
-    visited[startpos.first][startpos.second] = true;
-
+    map[startpos.first][startpos.second] = 'X';
     while(!q.empty()){
         PII p = q.front();
         q.pop();
         
-        if(map[p.first][p.second] == 'P'){
-            cnt ++;
-        }
+        
         
         for(int i = 0 ;i < 4; i++){
             int nx = p.first+dx[i];
             int ny = p.second+dy[i];
             if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-            if(visited[nx][ny]) continue;
             if(map[nx][ny] == 'X') continue;
-            
             q.push(make_pair(nx , ny));
-            visited[nx][ny] = true;
+            if(map[nx][ny] == 'P'){
+            cnt ++;
+            }
+            map[nx][ny] = 'X';
         }
 
     }
