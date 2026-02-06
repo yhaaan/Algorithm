@@ -1,13 +1,14 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int main() {
-    float a;
-    float m,n;
+    double a;
+    double m,n;
     cin >> a;
     cin >> m >> n;
     
-    float mx,mn;
+    double mx,mn;
     
     if(m < n){
         mx = n;
@@ -18,7 +19,9 @@ int main() {
         mn = n;
     }
     mn = mn/a;
-    
+
+    cout << fixed;
+    cout << setprecision(7);
     if(mn*2 < mx) cout << mn*2;
     else cout << mx;
 }
