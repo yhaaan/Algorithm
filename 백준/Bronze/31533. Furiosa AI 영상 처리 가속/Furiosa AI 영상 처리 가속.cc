@@ -6,8 +6,7 @@ int main() {
     float m,n;
     cin >> a;
     cin >> m >> n;
-    m = m/a;
-    n = n/a;
+    
     float mx,mn;
     
     if(m < n){
@@ -18,6 +17,7 @@ int main() {
         mx = m;
         mn = n;
     }
+    mn = mn/a;
     
     if(mn*2 < mx) cout << mn*2;
     else cout << mx;
